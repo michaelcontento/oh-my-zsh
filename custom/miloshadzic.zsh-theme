@@ -3,12 +3,14 @@
 # Some features in this theme are flagable:
 #
 # ZSH_THEME_PREFIX_ROOT=1
-#   >> Prefix the prompt with a red crown if the 
-#      current user is root
+#   >> Prefix the prompt with a red crown if the current user is root
+#
+# ZSH_THEME_PREFIX_OSX=1
+#   >> Prefix the prompt with a red apple if we're on OSX
 #
 # ZSH_THEME_USE_RPROMPT=1
-#   >> Display the last return code in red in the
-#      right prompt. But only if the code was not zero.
+#   >> Display the last return code in red in the right prompt. But only if the
+#      code was not zero.
 #
 
 # Configuration for $(git_prompt_info)
@@ -22,16 +24,24 @@ local directory="%{$fg[cyan]%}%1~%{$reset_color%}"
 local left_delimiter="%{$fg[red]%}|%{$reset_color%}"
 local right_delimiter=" %{$fg[cyan]%}⇒%{$reset_color%} "
 
-if [[ "$ZSH_THEME_PREFIX_ROOT" != "" && "$UID" -eq 0 ]]; then 
+# Highlight if root power is present
+if [[ "$ZSH_THEME_PREFIX_ROOT" != "" && "$UID" -eq 0 ]]; then
     local root_prefix="%{$fg[red]%}♚ %{$reset_color%}"
 else
     local root_prefix=""
 fi
 
-PROMPT='${root_prefix}${directory}${left_delimiter}$(git_prompt_info)${right_delimiter}'
+# And even highlight if we're on OSX
+if [[ "$ZSH_THEME_PREFIX_OSX" != "" && "${OSTYPE:0:6}" == "darwin" ]]; then
+    local osx_prefix="%{$fg[red]%}%{$reset_color%} "
+else
+    local osx_prefix=""
+fi
+
+PROMPT="${osx_prefix}${root_prefix}${directory}${left_delimiter}$(git_prompt_info)${right_delimiter}"
 
 # And finally the RPROMPT if activated
 if [ "$ZSH_THEME_USE_RPROMPT" != "" ]; then
     local return_code="%(?..%{$fg[red]%}%?%{$reset_color%})"
-    RPROMPT='${return_code}'
+    RPROMPT="${return_code}"
 fi
