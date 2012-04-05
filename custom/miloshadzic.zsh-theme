@@ -13,11 +13,16 @@
 #      code was not zero.
 #
 
-# Configuration for $(git_prompt_info)
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}"
+# Configuration for git
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}⚡%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}⚡"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}✗"
+
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%}+"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}≠"
+ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}-"
 
 # Some variables to make things readable
 local directory="%{$fg[cyan]%}%1~%{$reset_color%}"
@@ -38,10 +43,10 @@ else
     local osx_prefix=""
 fi
 
-PROMPT="${osx_prefix}${root_prefix}${directory}${left_delimiter}$(git_prompt_info)${right_delimiter}"
+PROMPT='${root_prefix}${directory}${left_delimiter}$(git_prompt_info)$(git_prompt_status)${right_delimiter}'
 
 # And finally the RPROMPT if activated
 if [ "$ZSH_THEME_USE_RPROMPT" != "" ]; then
-    local return_code="%(?..%{$fg[red]%}%?%{$reset_color%})"
-    RPROMPT="${return_code}"
+    local return_code="%(?.. %{$fg[red]%}%?%{$reset_color%})"
+    RPROMPT='%{$fg[grey]%}%~${return_code}%{$reset_color%}'
 fi
