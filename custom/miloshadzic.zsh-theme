@@ -38,12 +38,12 @@ fi
 
 # And even highlight if we're on OSX
 if [[ "$ZSH_THEME_PREFIX_OSX" != "" && "${OSTYPE:0:6}" == "darwin" ]]; then
-    local osx_prefix="%{$fg[red]%}%{$reset_color%} "
+    local osx_prefix="%{$fg[red]%}%{$reset_color%}"
 else
     local osx_prefix=""
 fi
 
-PROMPT='${root_prefix}${directory}${left_delimiter}$(git_prompt_info)$(git_prompt_status)${right_delimiter}'
+PROMPT='${osx_prefix}${root_prefix}${directory}${left_delimiter}$(git_prompt_info)$(git_prompt_status)${right_delimiter}'
 
 # And finally the RPROMPT if activated
 if [ "$ZSH_THEME_USE_RPROMPT" != "" ]; then
