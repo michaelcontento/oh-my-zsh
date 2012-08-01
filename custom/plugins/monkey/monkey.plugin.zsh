@@ -32,4 +32,13 @@ alias mhcr="$TRANS -config=release -target=html5 -check  $FILE"
 alias mhrr="$TRANS -config=release -target=html5 -run    $FILE"
 alias mhur="$TRANS -config=release -target=html5 -update $FILE"
 
+alias mfb=" $TRANS -config=debug   -target=flash -build  $FILE"
+alias mfc=" $TRANS -config=debug   -target=flash -check  $FILE"
+alias mfr=" $TRANS -config=debug   -target=flash -run    $FILE"
+alias mfu=" $TRANS -config=debug   -target=flash -update $FILE"
+alias mfbr="$TRANS -config=release -target=flash -build  $FILE"
+alias mfcr="$TRANS -config=release -target=flash -check  $FILE"
+alias mfrr="$TRANS -config=release -target=flash -run    $FILE"
+alias mfur="$TRANS -config=release -target=flash -update $FILE"
+
 unset $TRANS $FILE
