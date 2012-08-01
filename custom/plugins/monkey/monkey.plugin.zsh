@@ -1,6 +1,10 @@
 TRANS='/Applications/Monkey/bin/trans_macos'
 FILE='$(ls -1 *.monkey | head -n 1)'
 
+#  Schema: MONKEY   TARGET MODE    CONFIG
+# Example: m(onkey) g(lfw) b(uild) r(elease)
+#    Hint: Omit the last part and it's a debug build :)
+
 alias mgb=" $TRANS -config=debug   -target=glfw -build  $FILE"
 alias mgc=" $TRANS -config=debug   -target=glfw -check  $FILE"
 alias mgr=" $TRANS -config=debug   -target=glfw -run    $FILE"
