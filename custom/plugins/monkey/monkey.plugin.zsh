@@ -41,4 +41,13 @@ alias mfcr="$TRANS -config=release -target=flash -check  $FILE"
 alias mfrr="$TRANS -config=release -target=flash -run    $FILE"
 alias mfur="$TRANS -config=release -target=flash -update $FILE"
 
+alias mab=" $TRANS -config=debug   -target=android -build  $FILE"
+alias mac=" $TRANS -config=debug   -target=android -check  $FILE"
+alias mar=" $TRANS -config=debug   -target=android -run    $FILE"
+alias mau=" $TRANS -config=debug   -target=android -update $FILE"
+alias mabr="$TRANS -config=release -target=android -build  $FILE"
+alias macr="$TRANS -config=release -target=android -check  $FILE"
+alias marr="$TRANS -config=release -target=android -run    $FILE"
+alias maur="$TRANS -config=release -target=android -update $FILE"
+
 unset $TRANS $FILE
