@@ -9,4 +9,6 @@ alias ll="ls $COLOR -lhA"
 
 alias json_pp='python -mjson.tool'
 
+alias less='less --quit-if-one-screen'
+
 unset COLOR
