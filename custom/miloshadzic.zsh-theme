@@ -5,9 +5,6 @@
 # ZSH_THEME_PREFIX_ROOT=1
 #   >> Prefix the prompt with a red crown if the current user is root
 #
-# ZSH_THEME_PREFIX_OSX=1
-#   >> Prefix the prompt with a red apple if we're on OSX
-#
 # ZSH_THEME_USE_RPROMPT=1
 #   >> Display the last return code in red in the right prompt. But only if the
 #      code was not zero.
@@ -36,14 +33,7 @@ else
     local root_prefix=""
 fi
 
-# And even highlight if we're on OSX
-if [[ "$ZSH_THEME_PREFIX_OSX" != "" && "${OSTYPE:0:6}" == "darwin" ]]; then
-    local osx_prefix="%{$fg[red]%}%{$reset_color%}"
-else
-    local osx_prefix=""
-fi
-
-PROMPT='${osx_prefix}${root_prefix}${directory}${left_delimiter}$(git_prompt_info)$(git_prompt_status)${right_delimiter}'
+PROMPT='${root_prefix}${directory}${left_delimiter}$(git_prompt_info)${right_delimiter}'
 
 # And finally the RPROMPT if activated
 if [ "$ZSH_THEME_USE_RPROMPT" != "" ]; then
